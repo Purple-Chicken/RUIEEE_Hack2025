@@ -9,7 +9,7 @@ use image::DynamicImage;
 use image::Rgba;
 
 fn main() {
-    let img = image::open("../pics/markiplier.jpg").unwrap();
+    let img = image::open("../pics/gradient.jpg").unwrap();
     println!("Dimensions: {:?}",img.dimensions());
     //println!("Color type: {:?}",img.color_type());
     let out = img.resize(620,480,FilterType::Gaussian);
