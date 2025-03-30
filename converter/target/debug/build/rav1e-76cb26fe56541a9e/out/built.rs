@@ -48,10 +48,10 @@ pub static HOST: &str = "x86_64-unknown-linux-gnu";
 pub static PROFILE: &str = "debug";
 #[doc=r#"The compiler that cargo resolved to use."#]
 #[allow(dead_code)]
-pub static RUSTC: &str = "/home/Rubiks/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc";
+pub static RUSTC: &str = "rustc";
 #[doc=r#"The documentation generator that cargo resolved to use."#]
 #[allow(dead_code)]
-pub static RUSTDOC: &str = "/home/Rubiks/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustdoc";
+pub static RUSTDOC: &str = "rustdoc";
 #[doc=r#"Value of OPT_LEVEL for the profile used during compilation."#]
 #[allow(dead_code)]
 pub static OPT_LEVEL: &str = "0";
@@ -73,10 +73,10 @@ pub static FEATURES_LOWERCASE: [&str; 1] = ["threading"];
 #[doc=r#"The feature-string as above, from lowercase strings."#]
 #[allow(dead_code)]
 pub static FEATURES_LOWERCASE_STR: &str = "threading";
-#[doc=r#"The output of `/home/Rubiks/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc -V`"#]
+#[doc=r#"The output of `rustc -V`"#]
 #[allow(dead_code)]
 pub static RUSTC_VERSION: &str = "rustc 1.84.1 (e71f9a9a9 2025-01-27)";
-#[doc=r#"The output of `/home/Rubiks/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustdoc -V`; empty string if `/home/Rubiks/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustdoc -V` failed to execute"#]
+#[doc=r#"The output of `rustdoc -V`; empty string if `rustdoc -V` failed to execute"#]
 #[allow(dead_code)]
 pub static RUSTDOC_VERSION: &str = "rustdoc 1.84.1 (e71f9a9a9 2025-01-27)";
 #[doc=r#"The target architecture, given by `CARGO_CFG_TARGET_ARCH`."#]
