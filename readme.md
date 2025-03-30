@@ -1,94 +1,43 @@
-# FPGA HDMI Display
+## Inspiration
+We selected this prompt given at the hackathon to gain knowledge in embedded systems which would prepare use for our future courses at Rutgers.
+## What it does
+HDMI controller that changes the monitor display. A Rust program processes input images to reduce storage on the Zypo Z7 board, converting .png/.jpg/.gif to 620x480 in 8-bit colors COE file.  
+## How we built it
+We used information the following resources, Rutgers Embedded Systems Labs with similar tasks, online posts/forums on converting image file types to be read by Verilog.
 
-One Paragraph of the project description
+## Challenges we ran into
 
-Initially appeared on
-[gist](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2). But the page cannot open anymore so that is why I have moved it here.
+### Challenges in Rust Image Processing 
 
-## Getting Started
+Input file into Verilog: During our research phase, we misunderstood which file type could be read by Verilog and how much space the Zypoz7 could effectively display. As a result, we would iterate our image processing program in Rust several times. 
+- **1st iteration**: changed image filetype -->.bmp. 
+- **2nd iteration**, realized Verilog cannot read .bmp files, so changed the program to process image --> .bmp --> .hex. 
+- **3rd Iteration**, realized the image needs to be downscaled more, we added cropping, blur, and color downgrading to 8-bit colors.
+- **4th Iteration**: Realized Verilog needs a .coe file to run, and that our program could convert directly from .bmp to  .coe. 
+- **Final Rust image processing description**: Input: image (.png/.jpg/.gif), adds Gaussian blur and margins to compress and change resolution to 620 x 480, reduces color depth to 8-bit, exports a .coe file.
 
-These instructions will give you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on deploying the project on a live system.
+### Challenges in Verilog
+Verilog is a difficult program to use since the error locations were not clear. We also lack experience in Verilog/image processing. Testing the Verilog code since we did not have access to a test setup to use when the Judge was not here.
 
-### Prerequisites
 
-Requirements for the software and other tools to build, test and push 
--  Rust and Cargo installed on the system
-- [Example 1](https://www.example.com)
-- [Example 2](https://www.example.com)
+## Accomplishments that we're proud of
+- Manipulating images with Rust
+- Using Verilog to create binaries for embedded systems
+- Being organized and communicating well
+- Willingness to learn
 
-### Installing
 
-A step by step series of examples that tell you how to get a development
-environment running
 
-Say what the step will be
+## What we learned
+- Zypoz7 has low storage
+- use low color depth and low resolution to fit the image
+- USB OTG, HDMI (input & output), Gigabit Ethernet, 3.5mm audio jack, microSD slot, PMOD connectors, Arduino headers, JTAG port, and GPIO pins.
+- Use Verilog to process and send pixel data 
+- VGA pins: Red, Green, Blue, Hsync, Vsync
+- Colors and horizontal/vertical sync
+- Verilog cannot read images directly.
+Convert to bitmap convert to coe file
 
-    Give the example
-
-And repeat
-
-    until finished
-
-End with an example of getting some data out of the system or using it
-for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Sample Tests
-
-Explain what these tests test and why
-
-    Give an example
-
-### Style test
-
-Checks if the best practices and the right coding style has been used.
-
-    Give an example
-
-## Deployment
-
-Add additional notes to deploy this on a live system
-
-## Built With
-
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
-of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [Semantic Versioning](http://semver.org/) for versioning. For the versions
-available, see the [tags on this
-repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
-
-## Authors
-
-  - **Billie Thompson** - *Provided README Template* -
-    [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of
-[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
-who participated in this project.
-
-## License
-
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details
-
-## Acknowledgments
-
-  - Hat tip to anyone whose code is used
-  - Inspiration
-  - etc
+The techniques and theory behind video generation in the context of VGA are the foundation of the other methods(DVI and HDMI)
+## What's next for HDMI Controller
+Play **videos/gifs**. Separate the gif into individual frames. Play the frames in order to play the video/gif at a low frame rate. Work with camera feed, same process as videos/gifs but receiving input from a camera on another device.

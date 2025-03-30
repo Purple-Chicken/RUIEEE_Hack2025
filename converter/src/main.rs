@@ -9,7 +9,8 @@ use image::DynamicImage;
 use image::Rgba;
 
 fn main() {
-    let img = image::open("../pics/gradient.jpg").unwrap();
+    //let filename = "gradient.jpg" //File must be in pics
+    let img = image::open("../pics/stonks.gif", ).unwrap();
     println!("Dimensions: {:?}",img.dimensions());
     //println!("Color type: {:?}",img.color_type());
     let out = img.resize(620,480,FilterType::Gaussian);
