@@ -1,20 +1,12 @@
 extern crate image;
 
-use std::env;
-use std::path::Path;
-use std::fmt;
 use std::fs::File;
 use std::io::{Read, Write};
 use image::GenericImageView;
-use image::imageops::resize;
 use image::ImageFormat;
 use image::imageops::FilterType;
-use image::codecs::bmp;
-use image::ImageBuffer;
-use image::GenericImage;
 use image::DynamicImage;
 use image::Rgba;
-use tinybmp::{ColorTable, Pixels, ChannelMasks, Bmp, RawBmp, Header};
 
 fn main() {
     let img = image::open("../pics/markiplier.jpg").unwrap();
@@ -24,25 +16,16 @@ fn main() {
     println!("Dimensions of out: {:?}", out.dimensions());
     //println!("Color type: {:?}",out.color_type());
     let mut file = File::create("../pics/out.bmp").unwrap();
-    let file = out.write_to(&mut file, ImageFormat::Bmp).unwrap();
+    let _file = out.write_to(&mut file, ImageFormat::Bmp).unwrap();
     // Create new file w/ correct dimensions
     let mut out2 = image::ImageBuffer::from_pixel(620,480,Rgba([0,0,0,255]));
 
     for (x,y,pixel) in out.pixels() {
         out2.put_pixel(x+(620-out.dimensions().0)/2 , y + (480-out.dimensions().1)/2 , pixel);
     }
-    let file2 = DynamicImage::ImageRgba8(out2).save("../pics/out2.bmp").expect("Failed to center.");
-    //let bmp_data = include_bytes!("../out2.bmp");
-    //let bmp = RawBmp::from_slice(bmp_data).unwrap();
-    //println!("Color Table: {:?}",bmp_data); //Show the bmp header
+    let _file2 = DynamicImage::ImageRgba8(out2).save("../pics/out2.bmp").expect("Failed to center.");
     
-    //For pixel in bmp_data:
-        //Take the first hex (red), convert to binary and bitshift right 5 (3 leftmost bits are kept)
-        //Take the second hex (green), convert to binary and bitshift right 5 (3 leftmost bits are kept)
-        //Take the third hex (blue), convert to binary and bitshift right 6 (2 leftmost bits are kept)
-        //Ignore the 4th hex (A).
-        //Combine all the new bits together (RRRGGGBB) and 
-    //Append 
+
    reduce_color_depth_rgba("../pics/out2.bmp", "../pics/out3.bmp");
    bmp_to_coe("../pics/out2.bmp", "../out.coe")
 
