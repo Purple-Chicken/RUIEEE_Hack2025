@@ -13,16 +13,16 @@ fn main() {
     let img = image::open("../pics/stonks.gif", ).unwrap();
     println!("Dimensions: {:?}",img.dimensions());
     //println!("Color type: {:?}",img.color_type());
-    let out = img.resize(620,480,FilterType::Gaussian);
+    let out = img.resize(480,480,FilterType::Gaussian);
     println!("Dimensions of out: {:?}", out.dimensions());
     //println!("Color type: {:?}",out.color_type());
     let mut file = File::create("../pics/out.bmp").unwrap();
     let _file = out.write_to(&mut file, ImageFormat::Bmp).unwrap();
     // Create new file w/ correct dimensions
-    let mut out2 = image::ImageBuffer::from_pixel(620,480,Rgba([0,0,0,255]));
+    let mut out2 = image::ImageBuffer::from_pixel(480,480,Rgba([0,0,0,255]));
 
     for (x,y,pixel) in out.pixels() {
-        out2.put_pixel(x+(620-out.dimensions().0)/2 , y + (480-out.dimensions().1)/2 , pixel);
+        out2.put_pixel(x+(480-out.dimensions().0)/2 , y + (480-out.dimensions().1)/2 , pixel);
     }
     let _file2 = DynamicImage::ImageRgba8(out2).save("../pics/out2.bmp").expect("Failed to center.");
     
