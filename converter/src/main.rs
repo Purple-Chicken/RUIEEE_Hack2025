@@ -1,4 +1,3 @@
-
 extern crate image;
 
 use std::env;
@@ -33,6 +32,5 @@ fn main() {
 
 
 
-    
 
 }
