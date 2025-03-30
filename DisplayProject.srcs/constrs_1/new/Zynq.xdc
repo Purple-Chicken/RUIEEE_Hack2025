@@ -14,8 +14,4 @@ set_property -dict { PACKAGE_PIN A20   IOSTANDARD TMDS_33     } [get_ports { TMD
 
 set_property -dict { PACKAGE_PIN K18   IOSTANDARD LVCMOS33 } [get_ports { reset }]; #IO_L12N_T1_MRCC_35 Sch=btn[0]
 
-#Unused Pins
-# Uncomment and remove these if needed:
-# set_property -dict { PACKAGE_PIN E18   IOSTANDARD LVCMOS33 } [get_ports { hdmi_tx_hpd }];
-# set_property -dict { PACKAGE_PIN G17   IOSTANDARD LVCMOS33 } [get_ports { hdmi_tx_scl }];
-# set_property -dict { PACKAGE_PIN G18   IOSTANDARD LVCMOS33 } [get_ports { hdmi_tx_sda }];
+

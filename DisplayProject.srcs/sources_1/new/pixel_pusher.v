@@ -12,7 +12,7 @@ module pixel_pusher(
     output reg [7:0] G,      // Green channel output
     output reg [17:0] addr   // Image address
 );
-
+    
     always @(posedge clk) begin
         if (vs == 0) begin
             addr <= 0; // Reset the address counter when vs is low

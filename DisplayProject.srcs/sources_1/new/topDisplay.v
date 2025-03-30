@@ -16,8 +16,13 @@ module topDisplay(
     wire hs, vs;                // Internal VGA sync signals
     wire [17:0] addr;           // Address for pixel fetching
     wire [7:0] R, G, B;         // Resized RGB signals
-    wire [7:0] pixel = 8'b11111111; // Hardcoded pixel for testing
-
+    wire [7:0] pixel; // Hardcoded pixel for testing\
+    
+    picture picture_inst (
+        .addr(addr),
+        .pixel(pixel),
+        .clk(clk)
+    );
     // Clock Divider
     clock_div clk_div_inst (
         .clk_in(clk),
