@@ -1,5 +1,6 @@
 extern crate image;
 
+use std::str;
 use std::fs::File;
 use std::io::{Read, Write};
 use image::GenericImageView;
@@ -9,26 +10,36 @@ use image::DynamicImage;
 use image::Rgba;
 
 fn main() {
+
+
+    let image_to_use  = "markiplier.jpg"; //       <===== Put Filename here!!!
+    let fname: Vec<&str> = image_to_use.split(".").collect();
+
+    println!("Hello world!");
+    println!("File name: {}",&fname[0]);
+    println!("{}",&fname[1]);
+
+
     //let filename = "gradient.jpg" //File must be in pics
-    let img = image::open("../pics/stonks.gif", ).unwrap();
+    let img = image::open(format!("../pics/{}", image_to_use)).unwrap();
     println!("Dimensions: {:?}",img.dimensions());
     //println!("Color type: {:?}",img.color_type());
-    let out = img.resize(480,480,FilterType::Gaussian);
+    let out = img.resize(620,480,FilterType::Gaussian);
     println!("Dimensions of out: {:?}", out.dimensions());
     //println!("Color type: {:?}",out.color_type());
-    let mut file = File::create("../pics/out.bmp").unwrap();
+    let mut file = File::create(format!("../pics/{}.bmp",fname[0])).unwrap();
     let _file = out.write_to(&mut file, ImageFormat::Bmp).unwrap();
     // Create new file w/ correct dimensions
-    let mut out2 = image::ImageBuffer::from_pixel(480,480,Rgba([0,0,0,255]));
+    let mut out2 = image::ImageBuffer::from_pixel(620,480,Rgba([0,0,0,255]));
 
     for (x,y,pixel) in out.pixels() {
-        out2.put_pixel(x+(480-out.dimensions().0)/2 , y + (480-out.dimensions().1)/2 , pixel);
+        out2.put_pixel(x+(620-out.dimensions().0)/2 , y + (480-out.dimensions().1)/2 , pixel);
     }
-    let _file2 = DynamicImage::ImageRgba8(out2).save("../pics/out2.bmp").expect("Failed to center.");
+    let _file2 = DynamicImage::ImageRgba8(out2).save(format!("../pics/{}2.bmp",&fname[0])).expect("Failed to center.");
     
 
-   reduce_color_depth_rgba("../pics/out2.bmp", "../pics/out3.bmp");
-   bmp_to_coe("../pics/out2.bmp", "../out.coe")
+   reduce_color_depth_rgba(&format!("../pics/{}2.bmp", &fname[0]), &format!("../pics/{}3.bmp",&fname[0]));
+   bmp_to_coe(&format!("../pics/{}3.bmp",&fname[0]), &format!("../{}.coe",&fname[0]));
 
 }
 fn reduce_color_depth_rgba(input_path: &str, output_path: &str) {

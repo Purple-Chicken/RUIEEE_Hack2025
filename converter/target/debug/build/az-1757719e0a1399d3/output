@@ -1,6 +1,0 @@
-$ mkdir -p "/home/Rubiks/Desktop/GitHub/iee_hack25/RUIEEE_Hack2025/converter/target/debug/build/az-1757719e0a1399d3/out/try_track_caller"
-$ cd "/home/Rubiks/Desktop/GitHub/iee_hack25/RUIEEE_Hack2025/converter/target/debug/build/az-1757719e0a1399d3/out/try_track_caller"
-$ printf '%s' "// try_tra"... > "/home/Rubiks/Desktop/GitHub/iee_hack25/RUIEEE_Hack2025/converter/target/debug/build/az-1757719e0a1399d3/out/try_track_caller/try_track_caller.rs"
-$ cd "/home/Rubiks/Desktop/GitHub/iee_hack25/RUIEEE_Hack2025/converter/target/debug/build/az-1757719e0a1399d3/out/try_track_caller" && "rustc" "try_track_caller.rs" "--emit=dep-info,metadata" >& /dev/null
-cargo:rustc-cfg=track_caller
-$ rm -r "/home/Rubiks/Desktop/GitHub/iee_hack25/RUIEEE_Hack2025/converter/target/debug/build/az-1757719e0a1399d3/out/try_track_caller"
