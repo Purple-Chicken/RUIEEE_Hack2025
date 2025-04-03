@@ -39,7 +39,7 @@ fn main() {
     
 
    reduce_color_depth_rgba(&format!("../pics/{}2.bmp", &fname[0]), &format!("../pics/{}3.bmp",&fname[0]));
-   bmp_to_coe(&format!("../pics/{}3.bmp",&fname[0]), &format!("../{}.coe",&fname[0]));
+   bmp_to_coe(&format!("../pics/{}3.bmp",&fname[0]), &format!("../COE_examples/{}.coe",&fname[0]));
 
 }
 fn reduce_color_depth_rgba(input_path: &str, output_path: &str) {
